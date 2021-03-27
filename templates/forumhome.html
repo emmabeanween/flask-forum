@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+{% include 'header.html' %}
+</head>
+<body>
+
+<h1 style="text-align: center;"> forum home </h1>
+<table class="table table-bordered" style="width: 50%; margin-left: 400px; margin-top: 100px">
+  <thead>
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col"># Posts</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><a href='/category/travel'>Travel</a></td>
+      <td>{{num_travel}}</td>
+     
+    </tr>
+
+    <tr>
+    <td><a href='/category/gaming'>Gaming</a></td>	
+    <td>{{num_gaming}}</td>
+    </tr>
+
+    <tr>
+    <td><a href='category/sports'>Sports</a></td>	
+    <td>{{num_sports}}</td>
+    </tr>
+      <tr>
+    <td><a href='category/shopping'>Shopping</a></td>	
+    <td>{{num_shopping}}</td>
+    </tr>
+      <tr>
+    <td><a href='category/relationships'>Relationships</a></td>	
+    <td>{{num_relationships}}</td>
+    </tr>
+
+   
+  </tbody>
+</table>
+
+
+
+</body>
+</html>

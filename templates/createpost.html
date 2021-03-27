@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+
+{% include 'header.html' %}
+
+
+<h1 style="text-align: center; margin-top: 100px">create post</h1>
+
+<form action="" method="POST" style="margin-left: 300px;">
+
+</br></br>
+<select style="margin-left: 350px;" class="form-select" name="category">
+  <option selected>select a category</option>
+  <option value="travel">travel</option>
+  <option value="gaming">gaming</option>
+  <option value="sports">sports</option>
+   <option value="shopping">shopping</option>
+  <option value="relationships">relationships</option>
+</select>
+</br></br>
+
+  <input style="width: 80%;" type="text" class="form-control"  placeholder="enter a title here.." name="title"></br>
+  <textarea style="width:80%" class="form-control" name="content" placeholder="enter your content here..."></textarea></br>
+  <button style="margin-left: 380px;" type="submit" class="btn btn-primary">create!</button>
+
+</form>	
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+  
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+
+</body>
+</html>

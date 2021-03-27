@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+
+<h1 style="text-align: center; margin-top: 100px">edit post</h1>
+
+<img src="https://img.icons8.com/plasticine/100/000000/pencil.png" style="margin-left:650px;" />
+
+</br>
+
+<form action="" method="POST" style="margin-left: 300px;">
+<input style="width: 80%;" type="text" class="form-control"  placeholder="{{post_to_edit.title}}" name="title"></br>
+  <textarea style="width:80%" class="form-control" name="content" placeholder="{{post_to_edit.content}}"></textarea></br>
+  <button style="margin-left: 380px;" type="submit" class="btn btn-primary">fix!</button>
+
+</form>	
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+  
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+
+</body>
+</html>

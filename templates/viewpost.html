@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	</style>
+</head>
+<body>
+	{% include 'header.html' %}
+
+	<h1 style="text-align: center; font-style: bold; margin-top: 100px;">{{viewed_post.title}}</h1>
+	<div class="card" style="width: 60rem; margin-left: 400px;">
+  <div class="card-body">
+    <h5 class="card-title">{{viewed_post.content}}</h5>
+    <p class="card-text">posted by <a href="{{ url_for('userprofile', username=viewed_post.user_posted)}}">{{viewed_post.user_posted}}</a></p>
+  </div>
+</div>
+
+
+
+<div>
+<form action="" method="POST">	
+<textarea style="width:50%; margin-left: 400px" name="content" class="form-control" placeholder="write a reply to this post here..."></textarea></br>
+<button style="margin-left:450px" type = "submit" class="btn btn-secondary">reply</button>
+</form>
+</div>
+
+
+
+
+
+</br></br>
+{% for reply in viewed_post_replies.items %}
+
+    <span style="text-align: center; margin-left: 450px;"><i>{{reply.user_posted}}</i> at {{reply.date_posted.strftime('%m/%d/%Y %H:%M:%S')}} wrote: </span></br>
+    <span style="text-align: center; margin-left: 450px; font-size: 20px">{{reply.content}}</span>
+     </br></br>
+    
+    {% endfor %}
+ 
+
+
+ {%   for page in viewed_post_replies.iter_pages()   %}
+
+
+
+<div style=" text-align: center; ">
+
+
+
+<a style="color: blue;" href= "/viewpost/{{viewed_post.post_id}}?page={{page}}">
+{{page}}</a>
+	
+
+
+
+</div>
+{% endfor %}
+
+</body>
+</html>

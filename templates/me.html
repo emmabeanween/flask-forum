@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+	{% include 'header.html' %}
+
+
+<h1 style="text-align: center; margin-top: 100px"> your profile </h1>
+<img style="margin-left: 610px" src="https://img.icons8.com/pastel-glyph/128/000000/person-male--v3.png"/>
+
+<div class="card" style="width: 18rem; margin-left: 600px">
+  <div class="card-body">
+    <h5 class="card-title">you have {{num_postings}} forum postings and {{num_replies}} forum replies</h5>
+    <p class="card-text">you joined {{days_since_joined}} days ago </p>
+  </div>
+</div>
+</br>
+{% if num_postings!= 0 %}
+<span style="font-size: 20px; margin-left: 600px;">your forum postings </span>
+{% endif %}
+</br>
+
+
+
+<table class="table" style="width:50%; margin-left: 300px;">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>date posted</th>
+      <th>latest reply </th>
+    </tr>
+  </thead>
+  <tbody>
+
+ {% for post in all_posts %}
+
+    <tr>
+        <td><a href= "{{ url_for('editpost', id=post.post_id)}}">{{post.title}}</a></td>
+        <td>{{post.date_posted}}</td>
+        {% if post.latest_reply!=None %}
+        <td>{{post.latest_reply.strftime('%m/%d/%Y %H:%M:%S')}}</td>
+        {% endif %}
+      </tr>
+
+  {% endfor  %}
+   
+  </tbody>
+</table>
+
+
+
+
+</body>
+</html>

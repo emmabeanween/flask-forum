@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+{% include 'header.html' %}
+
+<h1 style="text-align: center; margin-top: 100px"> login </h1>
+<form action="/login" method="POST" style="width:50%; margin-left: 350px;">
+  <div class="form-group">
+    <input type="text" class="form-control"  placeholder="enter your username" name="username">
+  </div>
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="enter your password" name="password">
+  </div>
+  
+  <button style="margin-left: 330px;" type="submit" class="btn btn-primary">enter!</button>
+</form>
+
+</br>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+  
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+</body>
+</html>

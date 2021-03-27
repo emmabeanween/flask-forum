@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		h1 {
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+<h1>{{category}}</h1>
+<a href="/createpost" style="margin-left:670px;" class="btn btn-info" role="button">create post</a>
+
+<table class="table" style="width:50%; margin-left: 300px;margin-top:100px">
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>user posted</th>
+      <th>date posted</th>
+      <th>latest reply </th>
+    </tr>
+  </thead>
+  <tbody>
+
+ {% for post in all_posts %}
+
+    <tr>
+        <td><a href= "{{ url_for('viewpost', id=post.post_id)}}">{{post.title}}</a></td>
+        <td><a href="{{url_for('userprofile', username=post.user_posted)}}">{{post.user_posted}}</a></td>
+        <td>{{post.date_posted}}</td>
+        {% if post.latest_reply!=None %}
+        <td>{{post.latest_reply.strftime('%m/%d/%Y %H:%M:%S')}}</td>
+        {% endif %}
+      </tr>
+
+  {% endfor  %}
+   
+  </tbody>
+</table>
+
+
+
+
+
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+  
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
