@@ -43,7 +43,6 @@ class User(db.Model):
 
 
 	
-#fix forum home num thing
 #session logged in on certain pages-  create post, edit post
 #clean up, look pretty	
 @app.route("/forumhome")
@@ -84,6 +83,8 @@ def me():
 
 @app.route("/editpost/<int:id>", methods=['GET', 'POST'])
 def editpost(id):
+	if not session.get("user"):
+		return redirect(url_for("login"))
 	if request.method == "POST":
 		title = request.form['title']
 		content = request.form['content']
@@ -123,6 +124,8 @@ def userprofile(username):
 
 @app.route("/createpost", methods=['GET', 'POST'])
 def createpost():
+	if not session.get("user"):
+		return redirect(url_for("login"))
 	if request.method == "POST":
 		post_id = randint(10000, 99999)
 		category = request.form['category']
