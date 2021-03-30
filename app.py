@@ -42,9 +42,7 @@ class User(db.Model):
 	password = db.Column(db.String)
 
 
-	
-#session logged in on certain pages-  create post, edit post
-#clean up, look pretty	
+
 @app.route("/forumhome")
 def forumhome():
 	num_travel = len(ForumPost.query.filter_by(category='travel').all())
@@ -67,7 +65,6 @@ def viewcategory(category):
 
 
 @app.route("/me")
-
 def me():
 	if not session.get("user"):
 		return redirect(url_for("login"))
@@ -148,6 +145,8 @@ def createpost():
 
 @app.route("/viewpost/<int:id>", methods=['GET', 'POST'])
 def viewpost(id):
+	if not session.get("user"):
+		return redirect(url_for("login"))
 	if request.method == "POST":
 		primary_id= randint(10000, 99999)
 		post_id = id
@@ -210,6 +209,8 @@ def logout():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+	if session.get("user"):
+		return redirect(url_for("forumhome"))
 	if request.method == "POST":
 		username = request.form['username']
 		password = request.form['password']
